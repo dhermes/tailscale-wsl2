@@ -6,13 +6,10 @@ Running two reverse proxies (one in Windows, one in the WSL2 Linux VM), the
 Windows Tailscale daemon can be accessed via WSL2:
 
 ```
-$ tailscale ip -4
-Warning: client version "1.18.1-t0a4334048-gb05dc05d4" != tailscaled server version "1.18.0-t22d969975-g7022e5a4c"
-100.101.102.102
-$ tailscale ip -4 2> /dev/null
+$ tailscale ip
 100.101.102.102
 $
-$ tailscale status 2> /dev/null
+$ tailscale status
 100.101.102.102 suspicious-hawking   dhermes@     windows -
 100.101.102.103 pedantic-yonath      dhermes@     linux   -
 ```
@@ -139,6 +136,11 @@ version mismatch doesn't occur, but at least for now the custom APT
 [package][1] matches the Windows version:
 
 ```
+$ tailscale version
+1.18.1
+  tailscale commit: 0a43340482a86c3c227aa133c8f1ee9e36360b4b
+  other commit: b05dc05d46c4a3c7e634ef0695221985be99274d
+  go version: go1.17.2-ts7037d3ea51
 $ [sudo] apt-get install tailscale=1.18.0
 $ tailscale version
 1.18.0
