@@ -92,7 +92,7 @@ virtual network IP (e.g. here `172.27.64.1`) and run a reverse proxy
 
 ```
 PS C:\Users\dhermes\tailscale-wsl2> go install .\cmd\tailscale-wsl2-windows\
-PS C:\Users\dhermes\tailscale-wsl2> C:\Users\dhermes\go\bin\tailscale-wsl2-windows.exe --vethernet-wsl-ip 172.27.64.1
+PS C:\Users\dhermes\tailscale-wsl2> tailscale-wsl2-windows.exe --vethernet-wsl-ip 172.27.64.1
 ```
 
 Running a TCP reverse proxy is super easy with the super awesome

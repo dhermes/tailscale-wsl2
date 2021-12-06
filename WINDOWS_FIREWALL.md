@@ -26,11 +26,11 @@ via a new firewall:
 
 ![Windows Defender sees a new binary][1]
 
-Clicking "Allow Access" will only allow computers on the local network to
-connect, which excludes the virtual network interface exposed to WSL2. So
-we'll need to modify the firewall to allow traffic in from the WSL2 VM.
-(Just checking the "Public networks..." box would do the trick, but this is
-overly permissive.)
+Checking the "Public networks" checkbox and clicking "Allow Access" will
+allow computers on any network to connect. This excludes the virtual network
+interface exposed to WSL2 but also includes network interfaces we don't need
+(or want exposed). So we'll need to modify the firewall so that it only allows
+traffic in from the WSL2 VM.
 
 ## Modify Firewall Rule
 
@@ -55,7 +55,7 @@ be deleted:
 
 Select the remaining TCP rule, click the "Properties" option and then open
 the "Scope" properties section. Here, in addition to the local IPs, we can
-also enable "remote" traffic in from the `/24` subnet for the virtual WSL2
+restrict "remote" traffic to the `/24` subnet for the virtual WSL2
 network interface (e.g. `172.27.64.0/24`):
 
 ![Windows Defender remote IPs][5]
