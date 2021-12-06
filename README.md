@@ -42,7 +42,7 @@ dhermes@pedantic-yonath:~$ tailscale ip -4
 ```
 
 However, from the Linux side of WSL2, there is still no **direct** way to
-get information about the current node and other parts of the Tailnet:
+get information about the current device and other parts of the Tailnet:
 
 ```
 $ tailscale ip -4
