@@ -115,9 +115,6 @@ then it needs to be explicitly provided to `tailscale`
 
 ```
 $ tailscale --socket /var/run/tailscale/wsl2-tailscaled.sock ip -4
-Warning: client version "1.18.1-t0a4334048-gb05dc05d4" != tailscaled server version "1.18.0-t22d969975-g7022e5a4c"
-100.101.102.102
-$ tailscale --socket /var/run/tailscale/wsl2-tailscaled.sock ip -4 2> /dev/null
 100.101.102.102
 ```
 
@@ -125,6 +122,9 @@ Having the client and server version mismatch is not great and actually
 causes the server to **reject** some requests:
 
 ```
+$ tailscale ip -4
+Warning: client version "1.18.1-t0a4334048-gb05dc05d4" != tailscaled server version "1.18.0-t22d969975-g7022e5a4c"
+100.101.102.102
 $ tailscale ping pedantic-yonath
 Warning: client version "1.18.1-t0a4334048-gb05dc05d4" != tailscaled server version "1.18.0-t22d969975-g7022e5a4c"
 2021/12/05 19:47:58 GotNotify: Version mismatch! frontend="1.18.1-t0a4334048-gb05dc05d4" backend="1.18.0-t22d969975-g7022e5a4c"
