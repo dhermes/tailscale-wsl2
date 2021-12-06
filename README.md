@@ -91,17 +91,24 @@ virtual network IP (e.g. here `172.27.64.1`) and run a reverse proxy
 **in Windows** that will be available to the WSL2 VM:
 
 ```
-PS C:\Users\dhermes\Desktop\tailscale-wsl2> go build -o tailscale-wsl2-windows.exe .\cmd\windows\main.go
-PS C:\Users\dhermes\Desktop\tailscale-wsl2> .\tailscale-wsl2-windows.exe --vethernet-wsl-ip 172.27.64.1
+PS C:\Users\dhermes\tailscale-wsl2> go install .\cmd\tailscale-wsl2-windows\
+PS C:\Users\dhermes\tailscale-wsl2> C:\Users\dhermes\go\bin\tailscale-wsl2-windows.exe --vethernet-wsl-ip 172.27.64.1
 ```
+
+Running a TCP reverse proxy is super easy with the super awesome
+`inet.af/tcpproxy` [package][2]. This package was of course created by the
+lovely folks at Tailscale. They **also** made the `inet.af/wf` [package][4] for
+Windows Firewall operations, which turns out to be necessary to bind to
+the virtual network IP. See [Windows Firewall][3] for more information about
+which firewall rules are necessary.
 
 But, this only solves half of the problem. The `tailscale` CLI still assumes
 it will have a UDS to talk to. To solve this problem, we run a **second**
 reverse proxy, but on the Linux side of the house:
 
 ```
-$ go build -o tailscale-wsl2-linux ./cmd/linux/main.go
-$ sudo ./tailscale-wsl2-linux --host-ip 172.27.64.1 --tailscale-socket /var/run/tailscale/tailscaled.sock
+$ go install ./cmd/tailscale-wsl2-linux/
+$ sudo tailscale-wsl2-linux --host-ip 172.27.64.1 --tailscale-socket /var/run/tailscale/tailscaled.sock
 ```
 
 The **default** value of `--tailscale-socket` is actually
@@ -146,3 +153,6 @@ pong from pedantic-yonath (100.101.102.103) via 192.168.7.131:41641 in 5ms
 ```
 
 [1]: https://tailscale.com/kb/1039/install-ubuntu-2004/
+[2]: https://pkg.go.dev/inet.af/tcpproxy
+[3]: WINDOWS_FIREWALL.md
+[4]: https://pkg.go.dev/inet.af/wf
