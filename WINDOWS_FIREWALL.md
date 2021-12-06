@@ -27,7 +27,7 @@ via a new firewall:
 ![Windows Defender sees a new binary][1]
 
 Checking the "Public networks" checkbox and clicking "Allow Access" will
-allow computers on any network to connect. This excludes the virtual network
+allow computers on any network to connect. This includes the virtual network
 interface exposed to WSL2 but also includes network interfaces we don't need
 (or want exposed). So we'll need to modify the firewall so that it only allows
 traffic in from the WSL2 VM.
