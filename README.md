@@ -1,5 +1,7 @@
 # `tailscale-wsl2`
 
+> See: [tailscale/tailscale#3530][5]
+
 ## TL;DR
 
 Running two reverse proxies (one in Windows, one in the WSL2 Linux VM), the
@@ -158,3 +160,4 @@ pong from pedantic-yonath (100.101.102.103) via 192.168.7.131:41641 in 5ms
 [2]: https://pkg.go.dev/inet.af/tcpproxy
 [3]: WINDOWS_FIREWALL.md
 [4]: https://pkg.go.dev/inet.af/wf
+[5]: https://github.com/tailscale/tailscale/issues/3530
